@@ -1,4 +1,8 @@
-# monnaka-app
+# 門仲会公式サイト
+
+門前仲町コミュニティを広げる会員サイト
+https://monnaka-app.web.app/
+
 
 ## Project setup
 ```
