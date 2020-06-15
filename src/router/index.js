@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import firebase from "firebase";
 
 Vue.use(VueRouter);
 
@@ -10,34 +11,28 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/Home.vue")
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Home.vue"),
+    meta: { requiresAuth: true }
   },
   {
-    path: "/about",
-    name: "About",
+    path: "/mypage",
+    name: "myPage",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import(/* webpackChunkName: "about" */ "../views/myPage.vue"),
+    meta: { requiresAuth: true }
   },
   {
-    path: "/signup",
-    name: "Signup",
+    path: "/login",
+    name: "Login",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Signup.vue")
-  },
-  {
-    path: "/signin",
-    name: "Signin",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Signin.vue")
+      import(/* webpackChunkName: "about" */ "../views/Login.vue")
   }
 ];
 
@@ -45,6 +40,22 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  // ログイン有無の判断
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  if (requiresAuth) {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        next();
+      } else {
+        next({
+          path: "/login"
+        });
+      }
+    });
+  }
 });
 
 export default router;
