@@ -44,9 +44,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   // ログイン有無の判断
-  console.log("to");
-  console.log(to);
-  console.log(to.matched.some(record => console.log(record.meta.requiresAuth)));
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   if (requiresAuth) {
     firebase.auth().onAuthStateChanged(function(user) {

@@ -2,7 +2,6 @@
   <div class="myPage">
     <!--メニュー-->
     <Menu></Menu>
-
     <b-container>
       <b-row>
         <b-col cols="12" offset="5" class="my-5">

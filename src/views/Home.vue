@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <img alt="Monnakakai logo" src="../assets/logo.webp" />
     <Menu></Menu>
+    <h2>門仲会へようこそ</h2>
+    <img alt="Monnakakai logo" src="../assets/logo.webp" />
   </div>
 </template>
 
