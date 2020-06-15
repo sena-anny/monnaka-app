@@ -1,9 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
-import router from "./router";
 import firebase from "firebase";
-
 // Firebase設定
 let firebaseConfig = {
   apiKey: process.env.VUE_APP_APIKEY,
@@ -16,6 +14,7 @@ let firebaseConfig = {
   measurementId: process.env.VUE_APP_MEASUREMENTID
 };
 firebase.initializeApp(firebaseConfig);
+import router from "./router";
 
 Vue.config.productionTip = false;
 
