@@ -27,12 +27,12 @@
 </template>
 
 <script>
-// Firebase読み込み
-import firebase from "firebase";
+// Firebase Auth読み込み
+import { auth } from "@/plugins/firebase";
 import Menu from "@/components/Menu.vue";
 
 export default {
-  name: "Main",
+  name: "MyPage",
   components: {
     Menu
   },
@@ -44,7 +44,7 @@ export default {
   },
   mounted() {
     // ユーザー情報取得
-    firebase.auth().onAuthStateChanged(user => {
+    auth().onAuthStateChanged(user => {
       this.isLogin = true;
       this.loginUser = user;
     });
@@ -52,8 +52,7 @@ export default {
   methods: {
     deleteUser: function() {
       // ユーザー削除処理
-      firebase
-        .auth()
+      auth()
         .currentUser.delete()
         .then(function(res) {
           console.log("currentUser.delete", res);

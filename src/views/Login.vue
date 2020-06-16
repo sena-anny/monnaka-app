@@ -7,9 +7,14 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import { auth } from "@/plugins/firebase";
 import firebaseui from "firebaseui-ja";
 import "firebaseui-ja/dist/firebaseui.css";
+import firebase from "firebase";
+
+console.log("auth");
+console.log(auth.EmailAuthProvider);
+console.log(firebase.auth.EmailAuthProvider.PROVIDER_ID);
 
 export default {
   name: "Login",
@@ -31,13 +36,12 @@ export default {
             const mailFlag = authResult.user.emailVerified;
             if (mailFlag === false) {
               // 確認メール未時に確認メール送信
-              firebase
-                .auth()
+              auth()
                 .currentUser.sendEmailVerification()
                 .then(function() {
                   alert("登録メールを送信しました。ご確認ください。");
                   // URLリロード
-                  root.$router.go("/");
+                  root.$router.go();
                 });
             } else {
               // 確認メール済時にメイン画面へ移動
@@ -55,8 +59,8 @@ export default {
       signInSuccessUrl: "/",
       // 認証方法
       signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        auth.EmailAuthProvider.PROVIDER_ID,
+        auth.GoogleAuthProvider.PROVIDER_ID
       ],
       // 利用規約へリンク
       tosUrl: "https://monnaka-app.web.app/rules",
@@ -65,7 +69,7 @@ export default {
     };
 
     // 認証UI表示
-    const ui = new firebaseui.auth.AuthUI(firebase.auth());
+    const ui = new firebaseui.auth.AuthUI(auth());
     ui.start("#firebaseui-auth-container", uiConfig);
   }
 };

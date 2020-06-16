@@ -6,10 +6,7 @@
 // DBにアクセスして記事リストを取得
 // URLとタイトルを作成してArticleコンポーネントに渡す
 
-export default {
-  
-}
+export default {};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
