@@ -37,7 +37,7 @@ export default {
                 .then(function() {
                   alert("登録メールを送信しました。ご確認ください。");
                   // URLリロード
-                  root.$router.go();
+                  root.$router.go("/");
                 });
             } else {
               // 確認メール済時にメイン画面へ移動
