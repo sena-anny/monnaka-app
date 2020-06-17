@@ -27,7 +27,7 @@
 
 <script>
 // Firebase読み込み
-import firebase from "firebase";
+import { auth } from "@/plugins/firebase";
 
 export default {
   name: "Menu",
@@ -37,7 +37,7 @@ export default {
   methods: {
     logout: function() {
       // ログアウト処理
-      firebase.auth().signOut();
+      auth().signOut();
     }
   }
 };

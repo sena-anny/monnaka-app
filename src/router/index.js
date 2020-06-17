@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import firebase from "firebase";
+import { auth } from "../plugins/firebase";
 
 Vue.use(VueRouter);
 
@@ -46,7 +46,7 @@ router.beforeEach((to, from, next) => {
   // ログイン有無の判断
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   if (requiresAuth) {
-    firebase.auth().onAuthStateChanged(function(user) {
+    auth().onAuthStateChanged(function(user) {
       if (user) {
         next();
       } else {

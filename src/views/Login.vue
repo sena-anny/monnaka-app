@@ -10,11 +10,6 @@
 import { auth } from "@/plugins/firebase";
 import firebaseui from "firebaseui-ja";
 import "firebaseui-ja/dist/firebaseui.css";
-import firebase from "firebase";
-
-console.log("auth");
-console.log(auth.EmailAuthProvider);
-console.log(firebase.auth.EmailAuthProvider.PROVIDER_ID);
 
 export default {
   name: "Login",
