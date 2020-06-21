@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { auth } from "@/plugins/firebase";
+import { auth, db } from "../plugins/firebase";
 import firebaseui from "firebaseui-ja";
 import "firebaseui-ja/dist/firebaseui.css";
 
@@ -16,6 +16,17 @@ export default {
   data() {
     return {};
   },
+  // methods: {
+  //   registerUser(uid, displayName, photoURL) {
+  //     db()
+  //       .collection("users")
+  //       .doc(uid)
+  //       .set({
+  //         displayName: displayName,
+  //         photoURL: photoURL
+  //       });
+  //   }
+  // },
   mounted() {
     // thisを格納
     const root = this;
@@ -23,6 +34,29 @@ export default {
     const uiConfig = {
       callbacks: {
         signInSuccessWithAuthResult: function(authResult) {
+          let res = db()
+              .collection("users")
+              .doc(authResult.user.uid)
+              .set({
+                displayName: authResult.user.displayName,
+                photoURL: authResult.user.photoURL
+              });
+              console.log(res);
+          // 初回ログイン時にユーザー情報登録
+          if (authResult.additionalUserInfo.isNewUser) {
+            console.log("初回ログイン");
+            console.log(authResult.user.uid);
+            console.log(authResult.user.displayName);
+            console.log(authResult.user.photoURL);
+            let res = db()
+              .collection("users")
+              .doc(authResult.user.uid)
+              .set({
+                displayName: authResult.user.displayName,
+                photoURL: authResult.user.photoURL
+              });
+            console.log(res);
+          }
           // 認証種類判定
           if (authResult.additionalUserInfo.providerId === "google.com") {
             return true;

@@ -1,16 +1,11 @@
 <template>
-  <div></div>  
+  <div></div>
 </template>
 
 <script>
-
 // firestoreに投稿内容をアップロードする
 // 写真はgoogle storage利用する
-export default {
-  
-}
+export default {};
 </script>
 
-<style lang="sass" scoped>
-
-</style>
+<style lang="sass" scoped></style>

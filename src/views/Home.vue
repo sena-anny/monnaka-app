@@ -27,4 +27,7 @@ h2 {
   margin-top: 80px;
   text-align: center;
 }
+img {
+  width: 100%;
+}
 </style>
