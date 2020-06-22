@@ -16,46 +16,35 @@ export default {
   data() {
     return {};
   },
-  // methods: {
-  //   registerUser(uid, displayName, photoURL) {
-  //     db()
-  //       .collection("users")
-  //       .doc(uid)
-  //       .set({
-  //         displayName: displayName,
-  //         photoURL: photoURL
-  //       });
-  //   }
-  // },
+  methods: {
+    registerUser(uid, displayName, photoURL) {
+      console.log(uid, displayName, photoURL);
+      let res = db()
+        .collection("users")
+        .doc(uid)
+        .set({
+          displayName: displayName,
+          photoURL: photoURL
+        });
+      console.log(res);
+    }
+  },
   mounted() {
+    // let res = this.registerUser("001","Hello","world");
+    // console.log(res);
     // thisを格納
     const root = this;
     // 認証設定
     const uiConfig = {
       callbacks: {
         signInSuccessWithAuthResult: function(authResult) {
-          let res = db()
-              .collection("users")
-              .doc(authResult.user.uid)
-              .set({
-                displayName: authResult.user.displayName,
-                photoURL: authResult.user.photoURL
-              });
-              console.log(res);
           // 初回ログイン時にユーザー情報登録
           if (authResult.additionalUserInfo.isNewUser) {
             console.log("初回ログイン");
-            console.log(authResult.user.uid);
-            console.log(authResult.user.displayName);
-            console.log(authResult.user.photoURL);
-            let res = db()
-              .collection("users")
-              .doc(authResult.user.uid)
-              .set({
-                displayName: authResult.user.displayName,
-                photoURL: authResult.user.photoURL
-              });
-            console.log(res);
+            // console.log(authResult.user.uid);
+            // console.log(authResult.user.displayName);
+            // console.log(authResult.user.photoURL);
+            // root.registerUser("004","Hello","world");
           }
           // 認証種類判定
           if (authResult.additionalUserInfo.providerId === "google.com") {
