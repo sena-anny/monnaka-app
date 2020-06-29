@@ -3,25 +3,23 @@
     <!--メニュー-->
     <Menu></Menu>
     <b-container>
-      <b-row>
-        <b-col cols="12" offset="5" class="my-5">
+        <b-col cols="12" class="my-5">
           <h4>ユーザー情報</h4>
         </b-col>
 
-        <b-col cols="12" offset="5" class="mb-5">
+        <b-col cols="12" class="mb-5">
           <div v-if="isLogin">
-            <div>name: {{ loginUser.displayName }}</div>
-            <div>img: <img :src="loginUser.photoURL" /></div>
+            <div>名前: {{ loginUser.displayName }}</div>
+            <div>アイコン画像: <img :src="loginUser.photoURL" /></div>
           </div>
         </b-col>
 
-        <b-col cols="12" offset="5" class="mb-5">
+        <b-col cols="12" class="mb-5">
           <!--削除ボタン-->
           <button @click="deleteUser" class="btn btn-primary mt-3">
             ユーザー削除
           </button>
         </b-col>
-      </b-row>
     </b-container>
   </div>
 </template>
@@ -65,4 +63,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+img {
+  width: 100%;
+}
+</style>
