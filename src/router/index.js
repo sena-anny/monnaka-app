@@ -26,13 +26,47 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: "/post",
+    path: "/articles/post",
     name: "Post",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/articles/Post.vue"),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: "/articles/",
+    name: "articleList",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/articles/index.vue"),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: "/articles/:articleId/edit",
+    name: "articleEdit",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/articles/_articleId/edit.vue"
+      ),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: "/articles/:articleId/",
+    name: "articleView",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/articles/_articleId/index.vue"
+      ),
     meta: { requiresAuth: true }
   },
   {
