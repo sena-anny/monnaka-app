@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 h2 {
-  margin-top: 80px;
+  margin-top: 40px;
   text-align: center;
 }
 img {

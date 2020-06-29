@@ -6,6 +6,10 @@
         <b-navbar-nav class="ml-auto">
           <!--ユーザー表示-->
           <b-nav-item-dropdown text="設定" right>
+            <!--ホームへ-->
+            <b-dropdown-item class="dropdown-link-color" href="/">
+              ホーム
+            </b-dropdown-item>
             <!--マイページへ-->
             <b-dropdown-item class="dropdown-link-color" href="mypage">
               マイページ

@@ -25,7 +25,7 @@ export default {
     return {
       posts: db()
         .collection("posts")
-        .orderBy("createdAt", "desc")
+        .orderBy("updatedAt", "desc")
         .limit(this.$props.limit)
     };
   }
