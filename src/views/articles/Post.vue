@@ -2,10 +2,27 @@
   <div class="post">
     <Menu></Menu>
     <h2>投稿画面</h2>
-    <!-- タイトル -->
+    <b-form @submit="onSubmit" @reset="onReset">
+      <b-form-group
+        id="input-group-1"
+        label="投稿名"
+        label-for="input-1"
+        description="タイトルを入力してください"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.title"
+          type="text"
+          required
+          placeholder="title"
+        >
+        </b-form-input>
+      </b-form-group>
+    </b-form>
     <!-- 本文 -->
     <!-- タグ -->
     <!-- 写真 -->
+    <!-- 投稿ボタン -->
   </div>
 </template>
 
@@ -20,12 +37,20 @@ export default {
     Menu
   },
   data() {
-    return {};
+    return {
+      form: {
+        title: ""
+      }
+    };
   },
   methods: {
-    postData: function() {
+    onSubmit(evt) {
       // 投稿内容登録
       // createdAt updatedAt uid
+      evt.preventDefault();
+    },
+    onReset(evt) {
+      evt.preventDefault();
     }
   }
 };
