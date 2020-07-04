@@ -4,20 +4,21 @@
     <h2>投稿画面</h2>
     <b-form @submit="onSubmit" @reset="onReset">
       <!-- 投稿名 -->
-      <b-form-group
-        id="input-group-1"
-        label="投稿名"
-        label-for="input-1"
-        description="タイトルを入力してください"
-      >
+      <b-form-group id="input-group-1" label="投稿名" label-for="input-1">
         <b-form-input
           id="input-1"
           v-model="form.title"
+          :state="titleState"
           type="text"
           required
+          aria-describedby="input-live-feedback"
           placeholder="title"
         >
         </b-form-input>
+        {{ form.title }}
+        <b-form-invalid-feedback id="input-live-feedback">
+          投稿名が空です。
+        </b-form-invalid-feedback>
       </b-form-group>
       <!-- 本文 -->
       <b-form-group id="input-group-2" label="本文" label-for="input-2">
@@ -34,11 +35,24 @@
       <b-form-group id="input-group-3" label="タグ" label-for="input-3">
         <b-form-tags input-id="input-3" v-model="form.tags"> </b-form-tags>
       </b-form-group>
+      <!-- 写真 -->
+      <b-form-group id="input-group-4" label="画像" label-for="input-4">
+        <b-form-file
+          id="input-4"
+          :state="Boolean(form.img)"
+          placeholder="写真をアップロード"
+          drop-placeholder="写真をドロップ"
+          accept="image/*"
+          v-model="form.img"
+          browse-text="選択"
+        >
+          <div class="mt-3">
+            ファイル名: {{ form.img ? form.img.name : "" }}
+          </div>
+        </b-form-file>
+      </b-form-group>
+      <!-- 投稿ボタン/リセットボタン -->
     </b-form>
-
-
-    <!-- 写真 -->
-    <!-- 投稿ボタン -->
   </div>
 </template>
 
@@ -57,9 +71,17 @@ export default {
       form: {
         title: "",
         body: "",
-        tags: ["お役立ち", "門仲駅周辺"]
+        tags: ["お役立ち", "門仲駅周辺"],
+        img: null
       }
     };
+  },
+  computed: {
+    titleState() {
+      const str = String(this.form.title);
+      console.log(str, str.length);
+      return str.length > 0 ? true : false;
+    }
   },
   methods: {
     onSubmit(evt) {
@@ -74,4 +96,4 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped></style>
+<style scoped></style>
