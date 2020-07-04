@@ -3,6 +3,7 @@
     <Menu></Menu>
     <h2>投稿画面</h2>
     <b-form @submit="onSubmit" @reset="onReset">
+      <!-- 投稿名 -->
       <b-form-group
         id="input-group-1"
         label="投稿名"
@@ -18,9 +19,24 @@
         >
         </b-form-input>
       </b-form-group>
+      <!-- 本文 -->
+      <b-form-group id="input-group-2" label="本文" label-for="input-2">
+        <b-form-textarea
+          id="input-2"
+          v-model="form.body"
+          rows="3"
+          max-rows="10"
+          placeholder="門仲の魅力を教えて..."
+        >
+        </b-form-textarea>
+      </b-form-group>
+      <!-- タグ -->
+      <b-form-group id="input-group-3" label="タグ" label-for="input-3">
+        <b-form-tags input-id="input-3" v-model="form.tags"> </b-form-tags>
+      </b-form-group>
     </b-form>
-    <!-- 本文 -->
-    <!-- タグ -->
+
+
     <!-- 写真 -->
     <!-- 投稿ボタン -->
   </div>
@@ -39,7 +55,9 @@ export default {
   data() {
     return {
       form: {
-        title: ""
+        title: "",
+        body: "",
+        tags: ["お役立ち", "門仲駅周辺"]
       }
     };
   },
