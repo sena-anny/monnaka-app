@@ -60,6 +60,7 @@
 
 <script>
 import Menu from "@/components/Menu.vue";
+import { auth } from "@/plugins/firebase";
 
 // firestoreに投稿内容をアップロードする
 // 写真はgoogle storage利用する
@@ -75,13 +76,18 @@ export default {
         body: "",
         tags: ["お役立ち", "門仲駅周辺"],
         img: null
-      }
+      },
+      loginUser: null
     };
+  },
+  mounted() {
+    auth().onAuthStateChanged(user => {
+      this.loginUser = user;
+    });
   },
   computed: {
     titleState() {
       const str = String(this.form.title);
-      console.log(str, str.length);
       return str.length > 0 ? true : false;
     }
   },
@@ -97,7 +103,7 @@ export default {
       this.form.title = "";
       this.form.body = "";
       this.form.tags = ["お役立ち", "門仲駅周辺"];
-      this.img = null;
+      this.form.img = null;
     }
   }
 };
