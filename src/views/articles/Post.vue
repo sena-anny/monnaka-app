@@ -52,6 +52,8 @@
         </b-form-file>
       </b-form-group>
       <!-- 投稿ボタン/リセットボタン -->
+      <b-button class="mr-3" type="submit" variant="primary">Submit</b-button>
+      <b-button class="mr-3" type="reset" variant="danger">Reset</b-button>
     </b-form>
   </div>
 </template>
@@ -86,11 +88,16 @@ export default {
   methods: {
     onSubmit(evt) {
       // 投稿内容登録
-      // createdAt updatedAt uid
+      // createdAt updatedAt uid filepath
       evt.preventDefault();
+      alert(JSON.stringify(this.form));
     },
     onReset(evt) {
       evt.preventDefault();
+      this.form.title = "";
+      this.form.body = "";
+      this.form.tags = ["お役立ち", "門仲駅周辺"];
+      this.img = null;
     }
   }
 };
