@@ -107,19 +107,37 @@ export default {
       this.form.tags = ["お役立ち", "門仲駅周辺"];
       this.form.img = null;
     },
-    registerPost( uid ) {
-      const doc = db().collection("posts").add({
-        uid: uid,
-        title: this.form.title,
-        content: this.form.body,
-        tags: this.form.tags,
-        createdAt: "",
-        updatedAt: ""
-      });
+    registerPhoto() {},
+    registerPost(uid) {
+      const now = this.getCurrentTime();
+      const doc = db()
+        .collection("posts")
+        .add({
+          uid: uid,
+          title: this.form.title,
+          content: this.form.body,
+          tags: this.form.tags,
+          image: "",
+          createdAt: now,
+          updatedAt: now
+        });
       return doc;
     },
-    registerPhoto() {
-
+    getCurrentTime() {
+      const now = new Date();
+      const time =
+        now.getFullYear() +
+        "-" +
+        ("0" + (now.getMonth() + 1)).slice(-2) +
+        "-" +
+        ("0" + now.getDate()).slice(-2) +
+        "-" +
+        ("0" + now.getHours()).slice(-2) +
+        "-" +
+        ("0" + now.getMinutes()).slice(-2) +
+        "-" +
+        ("0" + now.getSeconds()).slice(-2);
+      return time;
     }
   }
 };
