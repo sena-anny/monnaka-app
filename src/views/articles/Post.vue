@@ -60,7 +60,7 @@
 
 <script>
 import Menu from "@/components/Menu.vue";
-import { auth, db } from "@/plugins/firebase";
+import { auth, db, storage } from "@/plugins/firebase";
 
 // firestoreに投稿内容をアップロードする
 // 写真はgoogle storage利用する
@@ -77,7 +77,8 @@ export default {
         tags: ["お役立ち", "門仲駅周辺"],
         img: null
       },
-      loginUser: null
+      loginUser: null,
+      filePath: ""
     };
   },
   mounted() {
@@ -92,13 +93,15 @@ export default {
     }
   },
   methods: {
-    onSubmit(evt) {
+    async onSubmit(evt) {
       // 投稿内容登録
       // createdAt updatedAt uid filepath
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
-      let uid = this.loginUser.uid;
-      this.registerPost(uid);
+      // alert(JSON.stringify(this.form));
+      // let uid = this.loginUser.uid;
+      await this.makeFilePath();
+      await this.registerPhoto();
+      // this.registerPost(uid);
     },
     onReset(evt) {
       evt.preventDefault();
@@ -107,7 +110,18 @@ export default {
       this.form.tags = ["お役立ち", "門仲駅周辺"];
       this.form.img = null;
     },
-    registerPhoto() {},
+    makeFilePath() {
+      const filename = this.form.img.name;
+      this.filePath = this.loginUser.uid + "/" + filename;
+    },
+    registerPhoto() {
+      const imageRef = storage()
+        .ref()
+        .child(this.filePath);
+      imageRef
+        .put(this.img)
+        .then(snapshot => console.log("upload file", snapshot));
+    },
     registerPost(uid) {
       const now = this.getCurrentTime();
       const doc = db()
@@ -117,7 +131,7 @@ export default {
           title: this.form.title,
           content: this.form.body,
           tags: this.form.tags,
-          image: "",
+          image: this.filePath,
           createdAt: now,
           updatedAt: now
         });

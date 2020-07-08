@@ -13,9 +13,6 @@ import "firebaseui-ja/dist/firebaseui.css";
 
 export default {
   name: "Login",
-  data() {
-    return {};
-  },
   methods: {
     registerUser(uid, displayName, photoURL) {
       console.log(uid, displayName, photoURL);
@@ -41,10 +38,6 @@ export default {
           // 初回ログイン時にユーザー情報登録
           if (authResult.additionalUserInfo.isNewUser) {
             console.log("初回ログイン");
-            // console.log(authResult.user.uid);
-            // console.log(authResult.user.displayName);
-            // console.log(authResult.user.photoURL);
-            // root.registerUser("004","Hello","world");
           }
           // 認証種類判定
           if (authResult.additionalUserInfo.providerId === "google.com") {
