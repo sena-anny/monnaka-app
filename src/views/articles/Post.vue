@@ -63,7 +63,7 @@ import Menu from "@/components/Menu.vue";
 import { auth, db, storage } from "@/plugins/firebase";
 
 // firestoreに投稿内容をアップロードする
-// 写真はgoogle storage利用する
+// 写真はcloud storage利用する
 export default {
   name: "Home",
   components: {
@@ -97,11 +97,10 @@ export default {
       // 投稿内容登録
       // createdAt updatedAt uid filepath
       evt.preventDefault();
-      // alert(JSON.stringify(this.form));
-      // let uid = this.loginUser.uid;
-      await this.makeFilePath();
-      await this.registerPhoto();
-      // this.registerPost(uid);
+      const uid = this.loginUser.uid;
+      this.makeFilePath();
+      this.registerPhoto();
+      this.registerPost(uid);
     },
     onReset(evt) {
       evt.preventDefault();
@@ -119,12 +118,12 @@ export default {
         .ref()
         .child(this.filePath);
       imageRef
-        .put(this.img)
+        .put(this.form.img)
         .then(snapshot => console.log("upload file", snapshot));
     },
     registerPost(uid) {
       const now = this.getCurrentTime();
-      const doc = db()
+      db()
         .collection("posts")
         .add({
           uid: uid,
@@ -135,7 +134,6 @@ export default {
           createdAt: now,
           updatedAt: now
         });
-      return doc;
     },
     getCurrentTime() {
       const now = new Date();
