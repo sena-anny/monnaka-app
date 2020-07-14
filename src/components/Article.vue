@@ -1,12 +1,19 @@
 <template>
   <div>
-    <img :src="this.imgPath" alt="" />
-    <p>{{ post.image }}</p>
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.updatedAt }}</p>
-    <p>{{ post.createdAt }}</p>
-    <p>{{ user.displayName }}</p>
-    <p>{{ user.photoURL }}</p>
+    <b-card
+      :title="this.post.title"
+      :img-src="this.imgPath"
+      :img-alt="this.post.title"
+      img-top
+      tag="article"
+      class="mb-2"
+    >
+      <b-card-text>
+        <p>投稿者 {{ user.displayName }}</p>
+        <p>最終更新日時 {{ post.updatedAt }}</p>
+      </b-card-text>
+      <b-button :href="getArticlePath" variant="primary">詳細</b-button>
+    </b-card>
   </div>
 </template>
 
@@ -22,10 +29,17 @@ export default {
       imgPath: ""
     };
   },
+  computed: {
+    getArticlePath() {
+      const article_id = this.$props.post.uid;
+      return "/article/" + article_id;
+    }
+  },
   mounted() {
-    const gsReference = storage().refFromURL(
-      "gs://monnaka-app.appspot.com/GVmzBgAvXhq6RrmuhJoH/IMG_3735.JPG"
-    );
+    const gsReference = storage()
+      .ref()
+      .child(this.post.image);
+    // const gsReference = storage().refFromURL("gs://monnaka-app.appspot.com/GVmzBgAvXhq6RrmuhJoH/IMG_3735.JPG");
     gsReference
       .getDownloadURL()
       .then(
