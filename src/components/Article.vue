@@ -4,6 +4,7 @@
       :title="this.post.title"
       :img-src="this.imgPath"
       :img-alt="this.post.title"
+      style="max-width: 20rem;max-height: 30rem;"
       img-top
       tag="article"
       class="mb-2"
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-import { db, storage } from "../plugins/firebase";
+import { db, storage } from "@/plugins/firebase";
 
 export default {
   name: "Article",
@@ -39,7 +40,6 @@ export default {
     const gsReference = storage()
       .ref()
       .child(this.post.image);
-    // const gsReference = storage().refFromURL("gs://monnaka-app.appspot.com/GVmzBgAvXhq6RrmuhJoH/IMG_3735.JPG");
     gsReference
       .getDownloadURL()
       .then(

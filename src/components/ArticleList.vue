@@ -1,11 +1,13 @@
 <template>
   <div>
-    <Article v-for="post in posts" :key="post.id" :post="post" />
+    <b-card-group deck>
+      <Article v-for="post in posts" :key="post.id" :post="post" />
+    </b-card-group>
   </div>
 </template>
 
 <script>
-import { db } from "../plugins/firebase";
+import { db } from "@/plugins/firebase";
 import Article from "@/components/Article.vue";
 
 // URLとタイトルを作成してArticleコンポーネントに渡す
