@@ -1,10 +1,25 @@
 <template>
-  <div></div>
+  <div class="articleList">
+    <Menu></Menu>
+
+
+    <b-button variant="success" href="/articles/post/">
+      投稿する
+    </b-button>
+  </div>
 </template>
 
 <script>
-// 記事リスト全件表示（絞り込み）
-export default {};
+import Menu from "@/components/Menu.vue";
+
+// 記事詳細画面
+export default {
+  name: "articleList",
+  components: {
+    Menu
+  }
+
+};
 </script>
 
 <style lang="sass" scoped></style>

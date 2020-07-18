@@ -65,7 +65,7 @@ import { auth, db, storage } from "@/plugins/firebase";
 // firestoreに投稿内容をアップロードする
 // 写真はcloud storage利用する
 export default {
-  name: "Home",
+  name: "Post",
   components: {
     Menu
   },

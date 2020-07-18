@@ -4,7 +4,7 @@
       :title="this.post.title"
       :img-src="this.imgPath"
       :img-alt="this.post.title"
-      style="max-width: 20rem;max-height: 30rem;"
+      style="max-width: 20rem;max-height: 40rem;"
       img-top
       tag="article"
       class="mb-2"
@@ -33,7 +33,7 @@ export default {
   computed: {
     getArticlePath() {
       const article_id = this.$props.post.uid;
-      return "/article/" + article_id;
+      return "/articles/" + article_id + "/";
     }
   },
   mounted() {

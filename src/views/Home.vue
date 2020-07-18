@@ -31,6 +31,7 @@ h2 {
   text-align: center;
 }
 img {
-  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 </style>
