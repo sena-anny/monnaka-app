@@ -2,7 +2,6 @@
   <div class="articleList">
     <Menu></Menu>
 
-
     <b-button variant="success" href="/articles/post/">
       投稿する
     </b-button>
@@ -18,7 +17,6 @@ export default {
   components: {
     Menu
   }
-
 };
 </script>
 
