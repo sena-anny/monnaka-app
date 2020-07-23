@@ -35,9 +35,6 @@ import { auth } from "@/plugins/firebase";
 
 export default {
   name: "Menu",
-  data() {
-    return {};
-  },
   methods: {
     logout: function() {
       // ログアウト処理
