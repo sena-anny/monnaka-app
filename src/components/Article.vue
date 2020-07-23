@@ -13,9 +13,10 @@
         <p>投稿者 {{ user.displayName }}</p>
         <p>最終更新日時 {{ post.updatedAt }}</p>
       </b-card-text>
-      <b-button v-if="this.card" :href="getArticlePath" variant="primary">詳細</b-button>
+      <b-button v-if="this.card" :href="getArticlePath" variant="primary"
+        >詳細</b-button
+      >
     </b-card>
-
   </div>
 </template>
 
@@ -60,8 +61,4 @@ export default {
 };
 </script>
 
-<style scoped>
-img {
-  width: 100%;
-}
-</style>
+<style scoped></style>
