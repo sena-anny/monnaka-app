@@ -13,8 +13,9 @@
         <p>投稿者 {{ user.displayName }}</p>
         <p>最終更新日時 {{ post.updatedAt }}</p>
       </b-card-text>
-      <b-button :href="getArticlePath" variant="primary">詳細</b-button>
+      <b-button v-if="this.card" :href="getArticlePath" variant="primary">詳細</b-button>
     </b-card>
+
   </div>
 </template>
 
@@ -23,7 +24,7 @@ import { db, storage } from "@/plugins/firebase";
 
 export default {
   name: "Article",
-  props: ["post"],
+  props: ["post", "card"],
   data() {
     return {
       user: {},
@@ -32,11 +33,11 @@ export default {
   },
   computed: {
     getArticlePath() {
-      const article_id = this.$props.post.uid;
+      const article_id = this.$props.post.id;
       return "/articles/" + article_id + "/";
     }
   },
-  mounted() {
+  created() {
     const gsReference = storage()
       .ref()
       .child(this.post.image);

@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card-group deck>
-      <Article v-for="post in posts" :key="post.id" :post="post" />
+      <Article v-for="post in posts" :key="post.id" :post="post" :card="card" />
     </b-card-group>
   </div>
 </template>
@@ -20,7 +20,8 @@ export default {
   props: { limit: Number },
   data() {
     return {
-      posts: []
+      posts: [],
+      card: true
     };
   },
   firestore() {
