@@ -132,7 +132,13 @@ export default {
         this.makeFilePath();
         this.registerPhoto();
       }
-      this.registerPost(uid);
+      if (this.$props.new) {
+        // 新規登録
+        this.registerPost(uid);
+      } else {
+        // 更新
+        this.updatePost(this.$props.articleId);
+      }
     },
     onReset(evt) {
       evt.preventDefault();
@@ -164,6 +170,19 @@ export default {
           tags: this.form.tags,
           image: this.filePath,
           createdAt: now,
+          updatedAt: now
+        });
+    },
+    updatePost(articleId) {
+      const now = this.getCurrentTime();
+      db()
+        .collection("posts")
+        .doc(articleId)
+        .update({
+          title: this.form.title,
+          content: this.form.body,
+          tags: this.form.tags,
+          image: this.filePath,
           updatedAt: now
         });
     },
