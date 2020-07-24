@@ -175,16 +175,28 @@ export default {
     },
     updatePost(articleId) {
       const now = this.getCurrentTime();
-      db()
-        .collection("posts")
-        .doc(articleId)
-        .update({
-          title: this.form.title,
-          content: this.form.body,
-          tags: this.form.tags,
-          image: this.filePath,
-          updatedAt: now
-        });
+      if (this.filePath) {
+        db()
+          .collection("posts")
+          .doc(articleId)
+          .update({
+            title: this.form.title,
+            content: this.form.body,
+            tags: this.form.tags,
+            image: this.filePath,
+            updatedAt: now
+          });
+      } else {
+        db()
+          .collection("posts")
+          .doc(articleId)
+          .update({
+            title: this.form.title,
+            content: this.form.body,
+            tags: this.form.tags,
+            updatedAt: now
+          });
+      }
     },
     getCurrentTime() {
       const now = new Date();
