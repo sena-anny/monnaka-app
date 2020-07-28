@@ -56,6 +56,11 @@
       <p>編集権限がありません。</p>
       <a href="/">ホームへ戻る</a>
     </div>
+    <div class="modal">
+      <b-modal v-model="modalShow" title="投稿結果">
+        <p class="my-4">{{ modalMessage }}</p>
+      </b-modal>
+    </div>
   </div>
 </template>
 
@@ -75,7 +80,9 @@ export default {
         uid: ""
       },
       loginUser: null,
-      filePath: ""
+      filePath: "",
+      modalShow: false,
+      modalMessage: "modalMessage"
     };
   },
   computed: {
@@ -134,10 +141,36 @@ export default {
       }
       if (this.$props.new) {
         // 新規登録
-        this.registerPost(uid);
+        const res = this.registerPost(uid);
+        res
+          .then(
+            function() {
+              this.modalShow = true;
+              this.modalMessage = "記事が投稿されました。";
+            }.bind(this)
+          )
+          .catch(
+            function(e) {
+              this.modalShow = true;
+              this.modalMessage = "記事が投稿に失敗しました。" + e;
+            }.bind(this)
+          );
       } else {
         // 更新
-        this.updatePost(this.$props.articleId);
+        const res = this.updatePost(this.$props.articleId);
+        res
+          .then(
+            function() {
+              this.modalShow = true;
+              this.modalMessage = "記事が投稿されました。";
+            }.bind(this)
+          )
+          .catch(
+            function(e) {
+              this.modalShow = true;
+              this.modalMessage = "記事が投稿に失敗しました。" + e;
+            }.bind(this)
+          );
       }
     },
     onReset(evt) {
@@ -161,7 +194,7 @@ export default {
     },
     registerPost(uid) {
       const now = this.getCurrentTime();
-      db()
+      const result = db()
         .collection("posts")
         .add({
           uid: uid,
@@ -172,11 +205,13 @@ export default {
           createdAt: now,
           updatedAt: now
         });
+      return result;
     },
     updatePost(articleId) {
       const now = this.getCurrentTime();
+      let result;
       if (this.filePath) {
-        db()
+        result = db()
           .collection("posts")
           .doc(articleId)
           .update({
@@ -187,7 +222,7 @@ export default {
             updatedAt: now
           });
       } else {
-        db()
+        result = db()
           .collection("posts")
           .doc(articleId)
           .update({
@@ -197,6 +232,7 @@ export default {
             updatedAt: now
           });
       }
+      return result;
     },
     getCurrentTime() {
       const now = new Date();

@@ -56,21 +56,23 @@ export default {
     }
   },
   created() {
-    const gsReference = storage()
-      .ref()
-      .child(this.post.image);
-    gsReference
-      .getDownloadURL()
-      .then(
-        function(url) {
-          this.imgPath = url;
-        }.bind(this)
-      )
-      .catch(e => console.log(e));
     // ユーザー情報取得
     auth().onAuthStateChanged(user => {
       this.loginUser.uid = user.uid;
     });
+    if (this.post.image) {
+      const gsReference = storage()
+        .ref()
+        .child(this.post.image);
+      gsReference
+        .getDownloadURL()
+        .then(
+          function(url) {
+            this.imgPath = url;
+          }.bind(this)
+        )
+        .catch(e => console.log(e));
+    }
   },
   firestore() {
     return {

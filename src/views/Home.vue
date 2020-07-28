@@ -5,10 +5,6 @@
     <img alt="Monnakakai logo" src="../assets/logo.webp" />
     <h2>最新の投稿</h2>
     <ArticleList :limit="10"></ArticleList>
-    <!--画面下に投稿画面へのリンクを作成する-->
-    <b-button variant="success" href="/articles/post/">
-      投稿する
-    </b-button>
   </div>
 </template>
 

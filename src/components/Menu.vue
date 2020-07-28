@@ -11,8 +11,12 @@
               ホーム
             </b-dropdown-item>
             <!--マイページへ-->
-            <b-dropdown-item class="dropdown-link-color" href="mypage">
+            <b-dropdown-item class="dropdown-link-color" href="/mypage">
               マイページ
+            </b-dropdown-item>
+            <!--投稿ページへ-->
+            <b-dropdown-item class="dropdown-link-color" href="/articles/post/">
+              投稿する
             </b-dropdown-item>
             <!--ログイン画面へ-->
             <b-dropdown-item
