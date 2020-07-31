@@ -7,28 +7,13 @@
 </template>
 
 <script>
-import { auth, db } from "../plugins/firebase";
+import { auth } from "../plugins/firebase";
 import firebaseui from "firebaseui-ja";
 import "firebaseui-ja/dist/firebaseui.css";
 
 export default {
   name: "Login",
-  methods: {
-    registerUser(uid, displayName, photoURL) {
-      console.log(uid, displayName, photoURL);
-      let res = db()
-        .collection("users")
-        .doc(uid)
-        .set({
-          displayName: displayName,
-          photoURL: photoURL
-        });
-      console.log(res);
-    }
-  },
   mounted() {
-    // let res = this.registerUser("001","Hello","world");
-    // console.log(res);
     // thisを格納
     const root = this;
     // 認証設定
