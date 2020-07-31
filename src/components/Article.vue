@@ -4,10 +4,9 @@
       :title="this.post.title"
       :img-src="this.imgPath"
       :img-alt="this.post.title"
-      style="max-width: 20rem;max-height: 40rem;"
+      style="max-width: 20rem;max-height: 40rem; margin-left: auto; margin-right: auto"
       img-top
       tag="article"
-      class="mb-2"
     >
       <b-card-text>
         <p>投稿者 {{ editor.displayName }}</p>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ArticleList">
     <b-card-group deck>
       <Article v-for="post in posts" :key="post.id" :post="post" :card="card" />
     </b-card-group>
