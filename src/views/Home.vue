@@ -2,7 +2,7 @@
   <div class="home">
     <Menu></Menu>
     <h2>門仲会へようこそ</h2>
-    <img alt="Monnakakai logo" src="../assets/logo.webp" />
+    <!-- <img alt="Monnakakai logo" src="../assets/logo.webp" /> -->
     <h2>最新の投稿</h2>
     <ArticleList :limit="10"></ArticleList>
   </div>
