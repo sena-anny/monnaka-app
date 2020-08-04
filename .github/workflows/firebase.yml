@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Build vue contents
-        run: yarn build
+        run: yarn build
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
