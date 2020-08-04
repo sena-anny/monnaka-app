@@ -4,7 +4,8 @@
       :title="this.post.title"
       :img-src="this.imgPath"
       :img-alt="this.post.title"
-      style="max-width: 20rem;max-height: 40rem; margin-left: auto; margin-right: auto"
+      style="width: 20rem;"
+      class="mb-2 ml-4 mr-4"
       img-top
       tag="article"
     >
