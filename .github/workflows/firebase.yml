@@ -15,15 +15,15 @@ jobs:
       - name: Settting Env Variables
         run: |
           export CI_MODE="github"
-          export VUE_APP_APIKEY=${{ secrets.VUE_APP_APIKEY }}
-          export VUE_APP_AUTHDOMAIN=${{ secrets.VUE_APP_AUTHDOMAIN }}
-          export VUE_APP_DATABASEURL=${{ secrets.VUE_APP_DATABASEURL }}
-          export VUE_APP_PROJECTID=${{ secrets.VUE_APP_PROJECTID }}
-          export VUE_APP_STORAGEBUCKET=${{ secrets.VUE_APP_STORAGEBUCKET }}
-          export VUE_APP_MESSAGINGSENDERID=${{ secrets.VUE_APP_MESSAGINGSENDERID }}
-          export VUE_APP_APPID=${{ secrets.VUE_APP_APPID }}
-          export VUE_APP_MEASUREMENTID=${{ secrets.VUE_APP_MEASUREMENTID }}
-          export VUE_APP_BASE_URL=${{ secrets.VUE_APP_BASE_URL }}
+          export APP_APIKEY=${{ secrets.VUE_APP_APIKEY }}
+          export APP_AUTHDOMAIN=${{ secrets.VUE_APP_AUTHDOMAIN }}
+          export APP_DATABASEURL=${{ secrets.VUE_APP_DATABASEURL }}
+          export APP_PROJECTID=${{ secrets.VUE_APP_PROJECTID }}
+          export APP_STORAGEBUCKET=${{ secrets.VUE_APP_STORAGEBUCKET }}
+          export APP_MESSAGINGSENDERID=${{ secrets.VUE_APP_MESSAGINGSENDERID }}
+          export APP_APPID=${{ secrets.VUE_APP_APPID }}
+          export APP_MEASUREMENTID=${{ secrets.VUE_APP_MEASUREMENTID }}
+          export APP_BASE_URL=${{ secrets.VUE_APP_BASE_URL }}
           echo $CI_MODE
       - name: Install dependencies
         run: yarn
