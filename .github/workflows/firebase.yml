@@ -14,6 +14,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Settting Env Variables
         run: |
+          export CI_MODE="github"
           export VUE_APP_APIKEY=${{ secrets.VUE_APP_APIKEY }}
           export VUE_APP_AUTHDOMAIN=${{ secrets.VUE_APP_AUTHDOMAIN }}
           export VUE_APP_DATABASEURL=${{ secrets.VUE_APP_DATABASEURL }}
@@ -23,7 +24,7 @@ jobs:
           export VUE_APP_APPID=${{ secrets.VUE_APP_APPID }}
           export VUE_APP_MEASUREMENTID=${{ secrets.VUE_APP_MEASUREMENTID }}
           export VUE_APP_BASE_URL=${{ secrets.VUE_APP_BASE_URL }}
-          echo $VUE_APP_BASE_URL
+          echo $CI_MODE
       - name: Install dependencies
         run: yarn
       - name: Build vue contents
