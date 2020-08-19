@@ -12,6 +12,17 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+      - name: Settting Env Variables
+        run: |
+          export VUE_APP_APIKEY=${{ secrets.VUE_APP_APIKEY }}
+          export VUE_APP_AUTHDOMAIN=${{ secrets.VUE_APP_AUTHDOMAIN }}
+          export VUE_APP_DATABASEURL=${{ secrets.VUE_APP_DATABASEURL }}
+          export VUE_APP_PROJECTID=${{ secrets.VUE_APP_PROJECTID }}
+          export VUE_APP_STORAGEBUCKET=${{ secrets.VUE_APP_STORAGEBUCKET }}
+          export VUE_APP_MESSAGINGSENDERID=${{ secrets.VUE_APP_MESSAGINGSENDERID }}
+          export VUE_APP_APPID=${{ secrets.VUE_APP_APPID }}
+          export VUE_APP_MEASUREMENTID=${{ secrets.VUE_APP_MEASUREMENTID }}
+          export VUE_APP_BASE_URL=${{ secrets.VUE_APP_BASE_URL }}
       - name: Install dependencies
         run: yarn
       - name: Build vue contents
