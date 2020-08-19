@@ -23,6 +23,7 @@ jobs:
           export VUE_APP_APPID=${{ secrets.VUE_APP_APPID }}
           export VUE_APP_MEASUREMENTID=${{ secrets.VUE_APP_MEASUREMENTID }}
           export VUE_APP_BASE_URL=${{ secrets.VUE_APP_BASE_URL }}
+          echo $VUE_APP_BASE_URL
       - name: Install dependencies
         run: yarn
       - name: Build vue contents
