@@ -64,14 +64,11 @@ export default {
       const gsReference = storage()
         .ref()
         .child(this.post.image);
-      gsReference
-        .getDownloadURL()
-        .then(
-          function(url) {
-            this.imgPath = url;
-          }.bind(this)
-        )
-        .catch(e => console.log(e));
+      gsReference.getDownloadURL().then(
+        function(url) {
+          this.imgPath = url;
+        }.bind(this)
+      );
     }
   },
   firestore() {

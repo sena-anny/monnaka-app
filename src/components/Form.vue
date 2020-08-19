@@ -105,7 +105,6 @@ export default {
     // 新規作成の場合は初期設定しない
     if (this.$props.new) return;
     const articleId = this.$props.articleId;
-    console.log(articleId);
     if (articleId) {
       this.getPostData(articleId);
     }
@@ -125,10 +124,7 @@ export default {
               this.form.uid = doc.data().uid;
             }
           }.bind(this)
-        )
-        .catch(function(error) {
-          console.log("Error getting document:", error);
-        });
+        );
     },
     async onSubmit(evt) {
       // 投稿内容登録
@@ -188,9 +184,7 @@ export default {
       const imageRef = storage()
         .ref()
         .child(this.filePath);
-      imageRef
-        .put(this.form.img)
-        .then(snapshot => console.log("upload file", snapshot));
+      imageRef.put(this.form.img);
     },
     registerPost(uid) {
       const now = this.getCurrentTime();
